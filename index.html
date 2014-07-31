@@ -242,7 +242,7 @@ function getUserFeed(id) {
 
 		document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
 		+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-		+ "<br/> Total Items=" + hn.feed.length ;
+		+ "<br/> Total Items=" + Object.keys(hn.feed).length ;
 
 		});
 		};
