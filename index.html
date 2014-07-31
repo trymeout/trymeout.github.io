@@ -183,8 +183,8 @@
 			for (var i=0; i < feeds.length; i++) {
 				var feed = feeds[i];
 				feed.hidden = 'false';      
-				hn.feed[feed.post_id] = {};
-				hn.feed[feed.post_id] = feed;
+				hn.feed[feed.created_time] = {};
+				hn.feed[feed.created_time] = feed;
 
 
 
@@ -220,10 +220,10 @@ function getUserFeed(id) {
 		for (var i=0; i < feeds.length; i++) {
 			var feed = feeds[i];
 
-			if (!(feed.post_id in hn.feed) && feed.created_time > hn.minTime ) {
+			if (!(feed.created_time in hn.feed) && feed.created_time > hn.minTime ) {
 				feed.hidden = 'true';   
-				hn.feed[feed.post_id] = {};
-				hn.feed[feed.post_id] = feed;
+				hn.feed[feed.created_time] = {};
+				hn.feed[feed.created_time] = feed;
 			} else {
 				console.log('already found: ', feed.post_id);
 			}
