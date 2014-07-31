@@ -269,12 +269,14 @@ function displayFeed(feeds) {
 		}
 
 		var colour = 'SkyBlue';
+              var feedType = 'feed';
 		if (feed.hidden === 'true') {
 			colour = "CornflowerBlue";
+                     feedType = 'nonFeed'
 		}
 
 
-		html += "<div style='border-top-width:1px;border-top-style:solid'>"  
+		html += "<div style='border-top-width:1px;border-top-style:solid' class='" + feed.actor_id + " " + feedType + "'>"  
 		html += "<div style='float:left;margin:8'> <img src='http://graph.facebook.com/" + feed.actor_id + "/picture' > </div>"; 
 		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + "</div>";
 		//html += "<div>" + new Date(feed.created_time*1000) + "</div>";
