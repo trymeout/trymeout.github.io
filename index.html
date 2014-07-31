@@ -52,10 +52,7 @@
 		word-wrap: break-word;       /* Internet Explorer 5.5+ */
 	}
 	</style>
-	<div id="fb-root"></div>
-	
-	<div> <img src="facebookstats.png"> </div>
-	
+	<div id="fb-root"></div>	
 	<div id="loginout" style="padding-top: 30px">
 
 		<div id="login">
@@ -70,8 +67,8 @@
 	<div id="wrapper"> 
 		<div id="progress-div"></div>
 		<div id="feed-div"></div>
-
 	</div>
+
 	<script>
 	
 	(function() {
@@ -206,65 +203,6 @@
 		});
 };
 
-
-
-function getGraphUserFeed(id) {
-	FB.api('/' + id + "/feed",   function(response) {
-
-		console.log('getUserFeed: ', response);
-		var feeds = response.data;
-
-		for (var i=0; i < feeds.length; i++) {
-			var feed = feeds[i];
-
-			if (typeof(feed) == 'undefined') {
-				continue;
-
-			}
-
-			if ( (feed.from.id in hn.friends) && !(feed.from.id in hn.excludes) && !(feed.id in hn.feed)) {
-
-				if ("story" in feed) {
-					feed.description = feed.story;
-				}
-				feed.actor_id = feed.from.id;
-
-				feed.created_time = Math.round(Date.parse(feed.created_time.substr(0, feed.created_time.length-5))/1000);
-
-				console.log('feed.created_time: ', feed.created_time);
-
-				if (feed.created_time > hn.minTime) {
-					feed.hidden = 'true';   
-					hn.feed[feed.id] = {};
-					hn.feed[feed.id] = feed;
-				}
-
-
-			} else {
-				console.log('already found: ', feed.id);
-			}
-
-		}
-// 			console.log('getUserFeed: ', response);
-
-if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
-
-	displayFeed(objectToArray(hn.feed));
-}
-
-if (hn.progress < hn.friendCount) {
-	getUserFeed(hn.friendsList[hn.progress++].uid); 
-}
-
-
-
-document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
-+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-+ "<br/> hn.progress = " + hn.progress;
-
-});
-};
-
 function getUserFeed(id) {
 	FB.api(
 	{ 
@@ -279,40 +217,33 @@ function getUserFeed(id) {
 		var feeds = response;
 
 // 				 console.log('results= ', feeds.length);
-for (var i=0; i < feeds.length; i++) {
-	var feed = feeds[i];
+		for (var i=0; i < feeds.length; i++) {
+			var feed = feeds[i];
 
-	if (!(feed.post_id in hn.feed) && feed.created_time > hn.minTime ) {
+			if (!(feed.post_id in hn.feed) && feed.created_time > hn.minTime ) {
+				feed.hidden = 'true';   
+				hn.feed[feed.post_id] = {};
+				hn.feed[feed.post_id] = feed;
+			} else {
+				console.log('already found: ', feed.post_id);
+			}
+		}
+		// 			console.log('getUserFeed: ', response);
 
+		if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
 
+			displayFeed(objectToArray(hn.feed));
+		}
 
-		feed.hidden = 'true';   
-		hn.feed[feed.post_id] = {};
-		hn.feed[feed.post_id] = feed;
-	} else {
-		console.log('already found: ', feed.post_id);
-	}
+		if (hn.progress < hn.friendCount) {
+			getUserFeed(hn.friendsList[hn.progress++].uid); 
+		}
 
-}
-// 			console.log('getUserFeed: ', response);
+		document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
+		+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100;
 
-if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
-
-	displayFeed(objectToArray(hn.feed));
-}
-
-if (hn.progress < hn.friendCount) {
-	getUserFeed(hn.friendsList[hn.progress++].uid); 
-}
-
-
-
-document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
-+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-+ "<br/> hn.progress = " + hn.progress;
-
-});
-};
+		});
+		};
 
 
 function isEmpty(str) {
