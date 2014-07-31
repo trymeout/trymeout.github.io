@@ -179,7 +179,7 @@
 		function(response) {
 			var feeds = response;
 
-            if (defined feeds[0].created_time) {
+            if (created_time in feeds[0]) {
             	hn.minTime = feeds[0].created_time;
             }
 			
