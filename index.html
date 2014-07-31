@@ -274,8 +274,9 @@ function displayFeed(feeds) {
 
 		html += "<div style='border-top-width:1px;border-top-style:solid'>"  
 		html += "<div style='float:left;margin:8'> <img src='http://graph.facebook.com/" + feed.actor_id + "/picture' > </div>"; 
-		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + new Date(feed.created_time*1000) + "</div>";
-		html += "<div style='width:415px'>" + displayName + "</div>";
+		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + "</div>";
+		html += "<div>" + new Date(feed.created_time*1000) + "</div>";
+		html += "<div>" + displayName + "</div>";
 
 		if ("attachment" in feed && "media" in feed.attachment) {
 			
