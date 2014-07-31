@@ -179,7 +179,10 @@
 		function(response) {
 			var feeds = response;
 
-			hn.minTime = feeds[0].created_time;
+            if (defined feeds[0].created_time) {
+            	hn.minTime = feeds[0].created_time;
+            }
+			
 			for (var i=0; i < feeds.length; i++) {
 				var feed = feeds[i];
 				feed.hidden = 'false';      
@@ -239,7 +242,7 @@ function getUserFeed(id) {
 
 		document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
 		+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-		+ "<br/> Total Items=" + hn.feed ;
+		+ "<br/> Total Items=" + hn.feed.length ;
 
 		});
 		};
