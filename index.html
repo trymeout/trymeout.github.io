@@ -63,8 +63,8 @@
 			<p ><a class="button-link" onClick="logoutUser();">Logout</a></p>
 		</div>
 		<div id="controls">
-			<p style="padding-top: 10px"><a class="button-link" onClick="hideFeed('feed');">hideFeed</a></p>
-	              <p><a class="button-link" onClick="hideFeed('nonFeed');">hideFeed</a></p>
+			<p style="padding-top: 10px"><a class="button-link" onClick="hideFeed('feed');">show feed</a></p>
+	              <p style="padding-top: 10px"><a class="button-link" onClick="hideFeed('nonFeed');">show hidden feed</a></p>
 		</div>
 	</div>
 
@@ -83,7 +83,7 @@
 
 
       function hideFeed(className) {
-         $('. '+ className).toggle();
+         $('.'+ className).toggle();
        }
 	function handleResponseChange(response) {
 		if (response.authResponse) {
