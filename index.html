@@ -1,215 +1,200 @@
 <html>
 <head>
 	<title>Hidden Newsfeed</title>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
-    	<script type="text/javascript"> google.load('visualization', '1.0', {'packages':['corechart']}); </script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
 </head>
 <body style="width:1000">
-
-<style>
-  body.connected #login { display: none; }
-  body.connected #logout { display: block; }
-  body.not_connected #login { display: block; }
-  body.not_connected #logout { display: none; }
-  .button-link {
-    padding: 10px 15px;
-    background: #4479BA;
-    color: #FFF;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    border: solid 1px #20538D;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-    -webkit-transition-duration: 0.2s;
-    -moz-transition-duration: 0.2s;
-    transition-duration: 0.2s;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
- }
- .button-link:hover {
-    background: #356094;
-    border: solid 1px #2A4E77;
-    text-decoration: none;
- }
- .button-link:active {
-    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
-    background: #2E5481;
-    border: solid 1px #203E5F;
- }
-pre {
- white-space: pre-wrap;       /* css-3 */
- white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
- white-space: -pre-wrap;      /* Opera 4-6 */
- white-space: -o-pre-wrap;    /* Opera 7 */
- word-wrap: break-word;       /* Internet Explorer 5.5+ */
-}
-
-
-</style>
+	<style>
+	body.connected #login { display: none; }
+	body.connected #logout { display: block; }
+	body.not_connected #login { display: block; }
+	body.not_connected #logout { display: none; }
+	.button-link {
+		padding: 10px 15px;
+		background: #4479BA;
+		color: #FFF;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		border: solid 1px #20538D;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+		-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+		-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+		-webkit-transition-duration: 0.2s;
+		-moz-transition-duration: 0.2s;
+		transition-duration: 0.2s;
+		-webkit-user-select:none;
+		-moz-user-select:none;
+		-ms-user-select:none;
+		user-select:none;
+	}
+	.button-link:hover {
+		background: #356094;
+		border: solid 1px #2A4E77;
+		text-decoration: none;
+	}
+	.button-link:active {
+		-webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+		-moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+		box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+		background: #2E5481;
+		border: solid 1px #203E5F;
+	}
+	pre {
+		white-space: pre-wrap;       /* css-3 */
+		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		white-space: -pre-wrap;      /* Opera 4-6 */
+		white-space: -o-pre-wrap;    /* Opera 7 */
+		word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	}
+	</style>
 	<div id="fb-root"></div>
 	
 	<div> <img src="facebookstats.png"> </div>
 	
-  
-
 	<div id="loginout" style="padding-top: 30px">
-	 
+
 		<div id="login">
-		 <span> Login to view your hidden newsfeed </span>
+			<span> Login to view your hidden newsfeed </span>
 			<p style="padding-top: 10px"><a class="button-link" onClick="loginUser();">Login</a></p>
 		</div>
 		<div id="logout" style="display:none">
-		   <p ><a class="button-link" onClick="logoutUser();">Logout</a></p>
+			<p ><a class="button-link" onClick="logoutUser();">Logout</a></p>
 		</div>
-   </div>
+	</div>
 
+	<div id="wrapper"> 
+		<div id="progress-div"></div>
+		<div id="feed-div"></div>
 
-
-
-  <div id="wrapper"> 
-  <div id="progress-div"></div>
-	<div id="feed-div"></div>
-
-  </div>
-  <script>
+	</div>
+	<script>
 	
-	  (function() {
-	    var e = document.createElement('script'); e.async = true;
-	        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-	        document.getElementById('fb-root').appendChild(e);
-	        }());
-
-   
+	(function() {
+		var e = document.createElement('script'); e.async = true;
+		e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+		document.getElementById('fb-root').appendChild(e);
+	}());
 
 	function handleResponseChange(response) {
-   		if (response.authResponse) {
-   			$("#login").hide();
-   			$("#logout").show();
-   			}
-   		else {
-   			$("#login").show();
-   			$("#logout").hide();
-   		}	
-        
-   		if (response.authResponse) {
-      		console.log(response);
-       		getAllFriends();
-   		}
- 	}
+		if (response.authResponse) {
+			$("#login").hide();
+			$("#logout").show();
+		}
+		else {
+			$("#login").show();
+			$("#logout").hide();
+		}	
+
+		if (response.authResponse) {
+			console.log(response);
+			getAllFriends();
+		}
+	}
 
 	function loginUser() {    
-    	FB.login(function(response) { },
-      	{scope:'read_stream'});  
-      	 $("#wrapper").show();	  
-     }
-
-	   function logoutUser() {   		
-	   		
-	   		FB.logout();
-	   		$("#wrapper").hide();	   
-	   }
-
-
-
-  var hn = {
-     friendsList : {},
-     excludes : { '669267938' : {}, '679755941' : {} },
-	 friends : {},
-     feed : {},
-     progress : 0,
-     friendCount : 0,
-     minTime : 0
-     };
-     
-  window.fbAsyncInit = function() {
-    FB.init({ appId: '128586067302881', 
-      status: true, 
-      cookie: true,
-      xfbml: true,
-      oauth: true});
-
-      FB.Event.subscribe('auth.authResponseChange', handleResponseChange);  
-    };
-
-
- 
-	function objectToArray(obj) {
-    	var arr = [];
-    	for (var prop in obj) {
-        	if (obj.hasOwnProperty(prop)) {
-            	arr.push(obj[prop]);
-        	}
-    	}
-    	arr.sort(function(a, b) { return b.created_time - a.created_time });
-    	return arr; 
+		FB.login(function(response) { },
+			{scope:'read_stream'});  
+		$("#wrapper").show();	  
 	}
- 
- 	function sortObject(obj) {
-    	var arr = [];
-    	for (var prop in obj) {
-        	if (obj.hasOwnProperty(prop)) {
-            	arr.push({
-                'key': prop,
-                'value': obj[prop]
-    	        });
-        	}
-    	}
-    	arr.sort(function(a, b) { return b.value - a.value; });
-    	return arr; 
+
+	function logoutUser() {   		
+
+		FB.logout();
+		$("#wrapper").hide();	   
+	}
+
+	var hn = {
+		friendsList : {},
+		excludes : { '669267938' : {}, '679755941' : {} },
+		friends : {},
+		feed : {},
+		progress : 0,
+		friendCount : 0,
+		minTime : 0
+	};
+
+	window.fbAsyncInit = function() {
+		FB.init({ appId: '128586067302881', 
+			status: true, 
+			cookie: true,
+			xfbml: true,
+			oauth: true});
+
+		FB.Event.subscribe('auth.authResponseChange', handleResponseChange);  
+	};
+
+	function objectToArray(obj) {
+		var arr = [];
+		for (var prop in obj) {
+			if (obj.hasOwnProperty(prop)) {
+				arr.push(obj[prop]);
+			}
+		}
+		arr.sort(function(a, b) { return b.created_time - a.created_time });
+		return arr; 
+	}
+
+	function sortObject(obj) {
+		var arr = [];
+		for (var prop in obj) {
+			if (obj.hasOwnProperty(prop)) {
+				arr.push({
+					'key': prop,
+					'value': obj[prop]
+				});
+			}
+		}
+		arr.sort(function(a, b) { return b.value - a.value; });
+		return arr; 
 	}
 	
-    function getAllFriends() {
-    	FB.api({ method: 'fql.query',
-			 	query: 'select uid, name, username  from user where uid in (SELECT uid2 FROM friend WHERE uid1=me())'},	    	  
-	    	  	function(response) {
-	    	  		_gaq.push(['_trackEvent', "Hidden Newsfeed", "User Login Success", response.name]);	
-	    	  		hn.friendsList = response;			
-					var friends = response;
-					hn.friendCount = friends.length;
-		    		for (var i=0; i < friends.length; i++) {
-         				var friend = friends[i];   
-         				hn.friends[friend.uid] = friend.name;
-         				console.log('friend: ', friend.name);         		
-       				}
-       				getNewsFeed();	
-       				  				
-       						
-				});
-	};
-      
-	function getNewsFeed() {
-    	FB.api(
-    		{ 
-    		 method: 'fql.query',
-			 query: "SELECT updated_time, created_time, description, message, attachment, type, privacy, post_id, actor_id, target_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid = me() AND type = 'newsfeed') order by created_time desc LIMIT 50"
-    		},
-    			
-    	  function(response) {
-				var feeds = response;
-				
-				hn.minTime = feeds[0].created_time;
-				for (var i=0; i < feeds.length; i++) {
-					var feed = feeds[i];
-					feed.hidden = 'false';      
-					hn.feed[feed.post_id] = {};
-					hn.feed[feed.post_id] = feed;
-
-					
-					
-					if ('created_time' in feed && feed.created_time < hn.minTime) {
-						hn.minTime = feed.created_time;					
-					}
-
+	function getAllFriends() {
+		FB.api({ method: 'fql.query',
+			query: 'select uid, name, username  from user where uid in (SELECT uid2 FROM friend WHERE uid1=me())'},	    	  
+			function(response) {
+				_gaq.push(['_trackEvent', "Hidden Newsfeed", "User Login Success", response.name]);	
+				hn.friendsList = response;			
+				var friends = response;
+				hn.friendCount = friends.length;
+				for (var i=0; i < friends.length; i++) {
+					var friend = friends[i];   
+					hn.friends[friend.uid] = friend.name;
+					console.log('friend: ', friend.name);         		
 				}
+				getNewsFeed();	
+
+
+			});
+	};
+
+	function getNewsFeed() {
+		FB.api(
+		{ 
+			method: 'fql.query',
+			query: "SELECT updated_time, created_time, description, message, attachment, type, privacy, post_id, actor_id, target_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid = me() AND type = 'newsfeed') order by created_time desc LIMIT 50"
+		},
+
+		function(response) {
+			var feeds = response;
+
+			hn.minTime = feeds[0].created_time;
+			for (var i=0; i < feeds.length; i++) {
+				var feed = feeds[i];
+				feed.hidden = 'false';      
+				hn.feed[feed.post_id] = {};
+				hn.feed[feed.post_id] = feed;
+
+
+
+				if ('created_time' in feed && feed.created_time < hn.minTime) {
+					hn.minTime = feed.created_time;					
+				}
+
+			}
 			console.log('getNewsFeed: ', response);
 			displayFeed(objectToArray(hn.feed));
 			getUserFeed(hn.friendsList[hn.progress++].uid);
@@ -217,247 +202,227 @@ pre {
 			getUserFeed(hn.friendsList[hn.progress++].uid); 
 			getUserFeed(hn.friendsList[hn.progress++].uid); 
 			getUserFeed(hn.friendsList[hn.progress++].uid);       
-			});
-	};
-	
-	
-	
-		function getGraphUserFeed(id) {
-    			FB.api('/' + id + "/feed",   function(response) {
+		});
+};
 
-  				console.log('getUserFeed: ', response);
-				var feeds = response.data;
-				
-				for (var i=0; i < feeds.length; i++) {
-					var feed = feeds[i];
-					
-					if (typeof(feed) == 'undefined') {
-						continue;
-					
-					}
-					
-					if ( (feed.from.id in hn.friends) && !(feed.from.id in hn.excludes) && !(feed.id in hn.feed)) {
-					
-						if ("story" in feed) {
-							feed.description = feed.story;
-						}
-						feed.actor_id = feed.from.id;
-						
-						feed.created_time = Math.round(Date.parse(feed.created_time.substr(0, feed.created_time.length-5))/1000);
-												
-						console.log('feed.created_time: ', feed.created_time);
-						
-						if (feed.created_time > hn.minTime) {
-							feed.hidden = 'true';   
-							hn.feed[feed.id] = {};
-							hn.feed[feed.id] = feed;
-						}
-						
 
-					} else {
-					   console.log('already found: ', feed.id);
-					}
 
-				}
-// 			console.log('getUserFeed: ', response);
-			
-			if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
-			
-				displayFeed(objectToArray(hn.feed));
-			}
-			
-			if (hn.progress < hn.friendCount) {
-				getUserFeed(hn.friendsList[hn.progress++].uid); 
-			}
-			
-			
-			
-			document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
-			+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-			+ "<br/> hn.progress = " + hn.progress;
-			
-			});
-	};
-	
-		function getUserFeed(id) {
-    	FB.api(
-    		{ 
-    		 method: 'fql.query',
-			 query: "SELECT updated_time, created_time, description, message, attachment, type, privacy, post_id, actor_id, target_id FROM stream WHERE source_id = " + id + " and created_time > " + hn.minTime  + " order by created_time desc limit 50"
-    		},
-    			
-    	  function(response) {
-    	  console.log('hn.progress=', hn.progress);
-			
-     	  console.log('getUserFeed: ', response);
-				var feeds = response;
-				
-// 				 console.log('results= ', feeds.length);
-				for (var i=0; i < feeds.length; i++) {
-					var feed = feeds[i];
-					
-					if (!(feed.post_id in hn.feed) && feed.created_time > hn.minTime ) {
-					
-					
-					    
-						feed.hidden = 'true';   
-						hn.feed[feed.post_id] = {};
-						hn.feed[feed.post_id] = feed;
-					} else {
-					   console.log('already found: ', feed.post_id);
-					}
+function getGraphUserFeed(id) {
+	FB.api('/' + id + "/feed",   function(response) {
 
-				}
-// 			console.log('getUserFeed: ', response);
-			
-			if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
-			
-				displayFeed(objectToArray(hn.feed));
-			}
-			
-			if (hn.progress < hn.friendCount) {
-				getUserFeed(hn.friendsList[hn.progress++].uid); 
-			}
-			
-			
-			
-			document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
-			+ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
-			+ "<br/> hn.progress = " + hn.progress;
-			
-			});
-	};
+		console.log('getUserFeed: ', response);
+		var feeds = response.data;
 
-	
-	function isEmpty(str) {
-    return (!str || 0 === str.length);
-}
-	
-	function displayFeed(feeds) {	
- 		var html = '';
 		for (var i=0; i < feeds.length; i++) {
-		
-		
-		
-			var feed = feeds[i];	
-			
-			if (feed.hidden == 'false') {
-			   continue;
-			}	
-			var displayName = feed.message;
-			
-			if (isEmpty(displayName)) {
-				displayName = feed.description;
-				
-				if (isEmpty(feed.description)) {
-				displayName = '';
+			var feed = feeds[i];
+
+			if (typeof(feed) == 'undefined') {
+				continue;
+
+			}
+
+			if ( (feed.from.id in hn.friends) && !(feed.from.id in hn.excludes) && !(feed.id in hn.feed)) {
+
+				if ("story" in feed) {
+					feed.description = feed.story;
 				}
-			}
-			
-			var colour = 'white';
-			if (feed.hidden === 'true') {
-			 	colour = "red";
-			 }
-			 
-			 
-			html += "<div style='border-top-width:1px;border-top-style:solid'>"  
-			html += "<div style='float:left;margin:8'> <img src='http://graph.facebook.com/" + feed.actor_id + "/picture' > </div>"; 
-			html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + new Date(feed.created_time*1000) + "</div>";
-			html += "<div style='width:415px'>" + displayName + "</div>";
-			
-			if ("attachment" in feed && "media" in feed.attachment) {
-			
-				if (feed.attachment.media.length > 0 && "src" in feed.attachment.media[0]) {
-					html += "<a > <img src='" + feed.attachment.media[0].src + "'></img></a>";
-			    }
-			}
-			
-				if ("picture" in feed) {
-			
-				
-					html += "<a > <img src='" + feed.picture + "'></img></a>";
-			 
-			}
-			
-						if ("link" in feed) {
-			
-				
-					html += "<a href='" + feed.link + "' target='_blank'>Link</a>";
-			 
+				feed.actor_id = feed.from.id;
+
+				feed.created_time = Math.round(Date.parse(feed.created_time.substr(0, feed.created_time.length-5))/1000);
+
+				console.log('feed.created_time: ', feed.created_time);
+
+				if (feed.created_time > hn.minTime) {
+					feed.hidden = 'true';   
+					hn.feed[feed.id] = {};
+					hn.feed[feed.id] = feed;
+				}
+
+
+			} else {
+				console.log('already found: ', feed.id);
 			}
 
-			if ("post_id" in feed) {
-					var postUrl = feed.post_id.replace("_","/posts/");
-				
-					html += "<br/><a href='http://facebook.com/" + postUrl + "' target='_blank'>Post Window</a>";
-					
-					// html += "<a href=\"javascript:showDialog('dialog" +  i + "','https://www.facebook.com/" + postUrl + "');\">Post</a>";
-			 
-			}
-            
-       
-			
-			html += "<div style='clear:both'></div>";
-			html += "<a href=\"javascript:showJson('pre" +  i + "');\">Show json " + feed.type + "</a>";
-			html += "<div style='display:none' id='pre" + i + "'><pre>" + JSON.stringify(feed) + "</pre></div>" ;
-			html += "</div>" 
-			html +="<div id='dialog" + i + "'></div>"  
 		}
-		
-// 		html += "</table>";
-		
-		document.getElementById("feed-div").innerHTML = html;
-	};
- 
- function showJson(id) {
- 	
- 	var ident = "#" + id;
- 
- 	$(ident).toggle();
- 	return false;
- 
- };
+// 			console.log('getUserFeed: ', response);
 
-      function showDialog(id, url) {
-      			var dialogId=  "#" + id;
-				$(dialogId).append($("<iframe />").attr("src", url)).dialog({position:['middle',20]});
-		    };
- 
- function recordProperyValues(propertyName, feed) {
- 
-           if (propertyName in feed && feed[propertyName].name) {
-            if (feed[propertyName].name in friendStats[propertyName]) {
-             friendStats[propertyName][feed[propertyName].name]++;
-             } else {
-             friendStats[propertyName][feed[propertyName].name] = 1;
-             }; 
-          }; 
- };
+if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
+
+	displayFeed(objectToArray(hn.feed));
+}
+
+if (hn.progress < hn.friendCount) {
+	getUserFeed(hn.friendsList[hn.progress++].uid); 
+}
+
+
+
+document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
++ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
++ "<br/> hn.progress = " + hn.progress;
+
+});
+};
+
+function getUserFeed(id) {
+	FB.api(
+	{ 
+		method: 'fql.query',
+		query: "SELECT updated_time, created_time, description, message, attachment, type, privacy, post_id, actor_id, target_id FROM stream WHERE source_id = " + id + " and created_time > " + hn.minTime  + " order by created_time desc limit 50"
+	},
+
+	function(response) {
+		console.log('hn.progress=', hn.progress);
+
+		console.log('getUserFeed: ', response);
+		var feeds = response;
+
+// 				 console.log('results= ', feeds.length);
+for (var i=0; i < feeds.length; i++) {
+	var feed = feeds[i];
+
+	if (!(feed.post_id in hn.feed) && feed.created_time > hn.minTime ) {
+
+
+
+		feed.hidden = 'true';   
+		hn.feed[feed.post_id] = {};
+		hn.feed[feed.post_id] = feed;
+	} else {
+		console.log('already found: ', feed.post_id);
+	}
+
+}
+// 			console.log('getUserFeed: ', response);
+
+if ((hn.progress % 10 == 0) || (hn.friendCount - hn.progress < 10)) {
+
+	displayFeed(objectToArray(hn.feed));
+}
+
+if (hn.progress < hn.friendCount) {
+	getUserFeed(hn.friendsList[hn.progress++].uid); 
+}
+
+
+
+document.getElementById("progress-div").innerHTML = "Profiles checked = " + hn.progress
++ "<br/> Percentage complete= " + (hn.progress/hn.friendCount)*100
++ "<br/> hn.progress = " + hn.progress;
+
+});
+};
+
+
+function isEmpty(str) {
+	return (!str || 0 === str.length);
+}
+
+function displayFeed(feeds) {	
+	var html = '';
+	for (var i=0; i < feeds.length; i++) {
+		var feed = feeds[i];	
+
+		// if (feed.hidden == 'false') {
+		// 	continue;
+		// }	
+		var displayName = feed.message;
+		if (isEmpty(displayName)) {
+			displayName = feed.description;
+			if (isEmpty(feed.description)) {
+				displayName = '';
+			}
+		}
+
+		var colour = 'white';
+		if (feed.hidden === 'true') {
+			colour = "red";
+		}
+
+
+		html += "<div style='border-top-width:1px;border-top-style:solid'>"  
+		html += "<div style='float:left;margin:8'> <img src='http://graph.facebook.com/" + feed.actor_id + "/picture' > </div>"; 
+		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + new Date(feed.created_time*1000) + "</div>";
+		html += "<div style='width:415px'>" + displayName + "</div>";
+
+		if ("attachment" in feed && "media" in feed.attachment) {
+			
+			if (feed.attachment.media.length > 0 && "src" in feed.attachment.media[0]) {
+				html += "<a > <img src='" + feed.attachment.media[0].src + "'></img></a>";
+			}
+		}
+
+		if ("picture" in feed) {
+			html += "<a > <img src='" + feed.picture + "'></img></a>";
+
+		}
+
+		if ("link" in feed) {
+			html += "<a href='" + feed.link + "' target='_blank'>Link</a>";
+
+		}
+
+		if ("post_id" in feed) {
+			var postUrl = feed.post_id.replace("_","/posts/");
+
+			html += "<br/><a href='http://facebook.com/" + postUrl + "' target='_blank'>open post</a>";
+		}
+
+		html += "<div style='clear:both'></div>";
+		html += "<a href=\"javascript:showJson('pre" +  i + "');\">Show json " + feed.type + "</a>";
+		html += "<div style='display:none' id='pre" + i + "'><pre>" + JSON.stringify(feed) + "</pre></div>" ;
+		html += "</div>" 
+		html +="<div id='dialog" + i + "'></div>"  
+	}
+	document.getElementById("feed-div").innerHTML = html;
+};
+
+function showJson(id) {
+	$("#" + id).toggle();
+	return false;
+
+};
+
+function showDialog(id, url) {
+	var dialogId=  "#" + id;
+	$(dialogId).append($("<iframe />").attr("src", url)).dialog({position:['middle',20]});
+};
+
+function recordProperyValues(propertyName, feed) {
+
+	if (propertyName in feed && feed[propertyName].name) {
+		if (feed[propertyName].name in friendStats[propertyName]) {
+			friendStats[propertyName][feed[propertyName].name]++;
+		} else {
+			friendStats[propertyName][feed[propertyName].name] = 1;
+		}; 
+	}; 
+};
 
 function recordPropValue(propertyName, feed) {
- 
-           if (propertyName in feed) {
-            if (feed[propertyName] in friendStats[propertyName]) {
-             friendStats[propertyName][feed[propertyName]]++;
-             } else {
-             friendStats[propertyName][feed[propertyName]] = 1;
-             }; 
-          };     
- };
- 
- </script>
+
+	if (propertyName in feed) {
+		if (feed[propertyName] in friendStats[propertyName]) {
+			friendStats[propertyName][feed[propertyName]]++;
+		} else {
+			friendStats[propertyName][feed[propertyName]] = 1;
+		}; 
+	};     
+};
+
+</script>
 
 <script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37247571-1']);
-  _gaq.push(['_trackPageview']);
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-37247571-1']);
+_gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
 
 </script>
 
