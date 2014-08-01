@@ -315,6 +315,7 @@ function displayFeed(feeds) {
 
 		html += "<div style='clear:both'></div>";
 		html += "<a href=\"javascript:showJson('pre" +  i + "');\">Show json " + feed.type + "</a>";
+              html += "<a href=\"javascript:hideUser(feed.actor_id);\">Hide user</a>";
 		html += "<div style='display:none' id='pre" + i + "'><pre>" + JSON.stringify(feed) + "</pre></div>" ;
 		html += "</div>" 
 		html +="<div id='dialog" + i + "'></div>"  
@@ -324,6 +325,12 @@ function displayFeed(feeds) {
 
 function showJson(id) {
 	$("#" + id).toggle();
+	return false;
+
+};
+
+function hideUser(id) {
+	$("." + id).hide();
 	return false;
 
 };
