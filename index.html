@@ -299,6 +299,10 @@ function displayFeed(feeds) {
                             		if("name" in feed.attachment) {
                                               html += "<div>" + feed.attachment.name + "</div>";
                                            }
+                                         if("description" in feed.attachment) {
+                                              html += "<div>" + feed.attachment.description + "</div>";
+                                           }
+
 			}
 		}
 
