@@ -301,7 +301,7 @@ if ("href" in feed.attachment){
 linkhref = feed.attachment.href;
 }
 
-				html += "<a href='" + linkhref + "'> <img src='" + feed.attachment.media[0].src + "'></img></a>";
+				html += "<a href='" + linkhref + "' target='_blank'> <img src='" + feed.attachment.media[0].src + "'></img></a>";
                             		if("name" in feed.attachment) {
                                               html += "<div>" + feed.attachment.name + "</div>";
                                            }
