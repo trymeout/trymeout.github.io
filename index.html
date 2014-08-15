@@ -295,7 +295,13 @@ function displayFeed(feeds) {
 		if ("attachment" in feed && "media" in feed.attachment) {
 			
 			if (feed.attachment.media.length > 0 && "src" in feed.attachment.media[0]) {
-				html += "<a > <img src='" + feed.attachment.media[0].src + "'></img></a>";
+
+var linkhref ="";
+if ("href" in feed.attachment){
+linkhref = feed.attachment.href;
+}
+
+				html += "<a href='" + linkhref + "'> <img src='" + feed.attachment.media[0].src + "'></img></a>";
                             		if("name" in feed.attachment) {
                                               html += "<div>" + feed.attachment.name + "</div>";
                                            }
@@ -303,7 +309,7 @@ function displayFeed(feeds) {
                                               html += "<div>" + feed.attachment.description + "</div>";
                                            }
                                          if ("icon" in feed.attachment) {
-			html += "<a > <img src='" + feed.attachment.picture + "'></img></a>";
+			html += "<a > <img src='" + feed.attachment.icon + "'></img></a>";
 
 		}
 
