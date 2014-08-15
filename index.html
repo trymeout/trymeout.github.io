@@ -296,7 +296,9 @@ function displayFeed(feeds) {
 			
 			if (feed.attachment.media.length > 0 && "src" in feed.attachment.media[0]) {
 				html += "<a > <img src='" + feed.attachment.media[0].src + "'></img></a>";
-                            		html += "<div>" + feed.attachment.name + "</div>";
+                            		if("name" in feed.attachment) {
+                                              html += "<div>" + feed.attachment.name + "</div>";
+                                           }
 			}
 		}
 
