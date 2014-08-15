@@ -302,6 +302,10 @@ function displayFeed(feeds) {
                                          if("description" in feed.attachment) {
                                               html += "<div>" + feed.attachment.description + "</div>";
                                            }
+                                         if ("icon" in feed.attachment) {
+			html += "<a > <img src='" + feed.attachment.picture + "'></img></a>";
+
+		}
 
 			}
 		}
