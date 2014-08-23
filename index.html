@@ -293,7 +293,7 @@ function displayFeed(feeds) {
 
 		html += "<div style='border-top-width:1px;border-top-style:solid' class='" + postclass  + " " + feedType + "'>"  
 		html += "<div style='float:left;margin:8'> <img src='http://graph.facebook.com/" + feed.actor_id + "/picture' > </div>"; 
-		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[feed.actor_id] + "</div>";
+		html += "<div style = 'background-color:" + colour + "'>" + hn.friends[postclass] + "</div>";
 		//html += "<div>" + new Date(feed.created_time*1000) + "</div>";
 		html += "<div>" + displayName + "</div>";
 
