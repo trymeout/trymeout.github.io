@@ -208,10 +208,16 @@
 			}
 			console.log('getNewsFeed: ', response);
 			displayFeed(objectToArray(hn.feed));
+
+            console.log('getNewsFeed: 1');
 			getUserFeed(hn.friendsList[hn.progress++].uid);
-			getUserFeed(hn.friendsList[hn.progress++].uid); 
-			getUserFeed(hn.friendsList[hn.progress++].uid); 
-			getUserFeed(hn.friendsList[hn.progress++].uid); 
+            console.log('getNewsFeed: 2');
+            getUserFeed(hn.friendsList[hn.progress++].uid);
+            console.log('getNewsFeed: 3');
+            getUserFeed(hn.friendsList[hn.progress++].uid);
+            console.log('getNewsFeed: 4');
+            getUserFeed(hn.friendsList[hn.progress++].uid);
+            console.log('getNewsFeed: 5');
 			getUserFeed(hn.friendsList[hn.progress++].uid);       
 		});
 };
